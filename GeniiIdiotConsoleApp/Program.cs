@@ -9,17 +9,20 @@
             var name = Console.ReadLine();
             do
             {
-                ShuffleQuestion(out string[] questions, out int[] answers);
+                var questions = ShuffleQuestion();
                 var RightAnswersCount = 0;// в навзании перменной главное слово  в конце, здесь главное слово количество
-                for (int i = 0; i < questions.Length; i++)
+                for (int i = 0; i < questions.Count; i++)
                 {
                     Console.WriteLine("Номер вопроса: " + (i + 1));
-                    Console.WriteLine(questions[i]);
-                    var userAnswer = GetAnswer();
-                    var rightAnswer = answers[i];
-                    if (userAnswer == rightAnswer)
+                    foreach (var dict in questions[i])
                     {
-                        RightAnswersCount++;
+                        Console.WriteLine(dict.Key);
+                        var userAnswer = GetAnswer();
+                        var rightAnswer = dict.Value;
+                        if (userAnswer == rightAnswer)
+                        {
+                            RightAnswersCount++;
+                        }
                     }
                 }
                 Console.WriteLine($"Количество правильных ответов: {RightAnswersCount}{Environment.NewLine}Ваш диагноз {name}: " + GetDiagnose(RightAnswersCount) + $"{Environment.NewLine}" + $"{name} не хотите ли вы сыграть снова? Ответьте да или нет?");// /n в некоторых системах

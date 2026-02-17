@@ -28,7 +28,7 @@
                 Console.WriteLine($"Количество правильных ответов: {RightAnswersCount}{Environment.NewLine}Ваш диагноз {name}: " + GetDiagnose(RightAnswersCount) + $"{Environment.NewLine}" + $"{name} не хотите ли вы сыграть снова? Ответьте да или нет?");// /n в некоторых системах
                 // работает некорректно. Как сделать более правильные перенос на новую строку.
             }
-            while (IsContinue());
+            while (IsContinue());//Для тестирования гита
         }
         public static List<Dictionary<string,int>> GetQuestions()// все методы с модификаторами!!! Как думаете, если мы ответы привяжем к вопросам, нам уже не надо будет все пермешивать и ответы и вопросы? Это доп задание!
         {

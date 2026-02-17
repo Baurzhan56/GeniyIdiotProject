@@ -27,24 +27,15 @@
             }
             while (IsContinue());
         }
-        public static string[] GetQuestions()// все методы с модификаторами!!! Как думаете, если мы ответы привяжем к вопросам, нам уже не надо будет все пермешивать и ответы и вопросы? Это доп задание!
+        public static List<Dictionary<string,int>> GetQuestions()// все методы с модификаторами!!! Как думаете, если мы ответы привяжем к вопросам, нам уже не надо будет все пермешивать и ответы и вопросы? Это доп задание!
         {
-            var questions = new string[5];
-            questions[0] = "Сколько будет два плюс два умноженное на два?";
-            questions[1] = "Бревно нужно распилить на 10 частей , сколько надо сделать надпилов?";
-            questions[2] = "На двух руках 10 пальцев. Сколько пальцев на 5 руках?";
-            questions[3] = "Укол делают каждые полчаса, сколько нужно минут для трёх уколов?";
-            questions[4] = "Пять свечей горело, две потухли. Сколько свечей осталось?";
-            return questions;
-        }
-        public static int[] GetAnswers()// все методы с модификаторами!!! Попробуем объединить с вопросами
-        {
-            var answers = new int[5];
-            answers[0] = 6;
-            answers[1] = 9;
-            answers[2] = 25;
-            answers[3] = 60;
-            answers[4] = 2;
+            var answer1 = new Dictionary<string, int> { { "Сколько будет два плюс два умноженное на два?", 6 } };
+            var answer2 = new Dictionary<string, int> { {"Бревно нужно распилить на 10 частей , сколько надо сделать надпилов?", 9 } };
+            var answer3 = new Dictionary<string, int> { { "На двух руках 10 пальцев. Сколько пальцев на 5 руках?", 25 } };
+            var answer4 = new Dictionary<string, int> { {"Укол делают каждые полчаса, сколько нужно минут для трёх уколов?", 60 } };
+            var answer5 = new Dictionary<string, int> { { "Пять свечей горело, две потухли. Сколько свечей осталось?", 2 } };
+            var answers = new List<Dictionary<string, int>>{
+            answer1,answer2,answer3,answer4,answer5};
             return answers;
         }
         public static string GetDiagnose(int countRightAnswers)// все методы с модификаторами!!!

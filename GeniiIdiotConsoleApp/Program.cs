@@ -44,7 +44,7 @@
         public static string GetDiagnose(int countRightAnswers)// все методы с модификаторами!!!
         {
             var questions = GetQuestions();
-            var percentage = (double)countRightAnswers * 100 / questions.Length;// var
+            var percentage = (double)countRightAnswers * 100 / questions.Count;// var
             var diagnose = new string[6];
             diagnose[0] = "Идиот";
             diagnose[1] = "Кретин";

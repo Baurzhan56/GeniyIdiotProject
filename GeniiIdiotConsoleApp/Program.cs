@@ -62,25 +62,18 @@
             }
             ;
         }
-        public static void ShuffleQuestion(out string[] questions, out int[] answers)// все методы с модификаторами!!! Название метода не очень ShuffleQuestions
+        public static List<Dictionary<string,int>> ShuffleQuestion()// все методы с модификаторами!!! Название метода не очень ShuffleQuestions
         {
             Random rand = new Random();
-            questions = GetQuestions();
-            answers = GetAnswers();
-            string temporaryString;
-            int temporaryInt = 0;
-
-            for (int i = questions.Length - 1; i > 0; i--)
+            var result = GetQuestions();
+            for (int i = result.Count-1; i >= 0; i--)
             {
                 int j = rand.Next(0, i);
-                temporaryString = questions[j];
-                questions[j] = questions[i];
-                questions[i] = temporaryString;
-
-                temporaryInt = answers[j];
-                answers[j] = answers[i];
-                answers[i] = temporaryInt;
+                var temp = result[j];
+                result[j] = result[i];
+                result[i] = temp;
             }
+            return result;
         }
         public static bool IsContinue()// все методы с модификаторами!!! Навзание метода не очень IsContinue. 
         {

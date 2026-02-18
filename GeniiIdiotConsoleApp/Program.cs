@@ -72,7 +72,7 @@
             var result = GetQA();
             for (int i = result.Count - 1; i >= 0; i--)
             {
-                int j = rand.Next(0, i);// var
+                var j = rand.Next(0, i);// var
                 var temp = result[j];
                 result[j] = result[i];
                 result[i] = temp;

@@ -4,11 +4,12 @@
     {
         static void Main(string[] args)
         {
+            var diagnoses = GetDiagnose();
+            var questions = GetQA();
             var userAnswer = 0;
             var rightAnswersCount = 0;
             var rightAnswer = 0;
             var each = new KeyValuePair<string, int>();
-            var questions = GetQA();
             Console.WriteLine("Введите ваше имя пожалуйста.");
             var name = Console.ReadLine();
             do
@@ -27,7 +28,7 @@
                         rightAnswersCount++;
                     }
                 }
-                Console.WriteLine($"Количество правильных ответов: {rightAnswersCount}{Environment.NewLine}Ваш диагноз {name}: " + GetDiagnose(CalculateDiagnose(rightAnswersCount, questions.Count)) + $"{Environment.NewLine}" + $"{name} не хотите ли вы сыграть снова? Ответьте да или нет?");
+                Console.WriteLine($"Количество правильных ответов: {rightAnswersCount}{Environment.NewLine}Ваш диагноз {name}: " + diagnoses[CalculateDiagnose(rightAnswersCount, questions.Count)] + $"{Environment.NewLine}" + $"{name} не хотите ли вы сыграть снова? Ответьте да или нет?");
 
             }
             while (IsContinue());
@@ -43,7 +44,7 @@
             answer1,answer2,answer3,answer4,answer5};
             return answers;
         }
-        public static string GetDiagnose(int ordinal)
+        public static string[] GetDiagnose()
         {
             // зачем здесь снеова вытаскивать вопросы, это тарта памяти. В метода надо сразу передавать данные о количестве вопросов для расчета диагноза
             var diagnose = new string[6];
@@ -53,7 +54,7 @@
             diagnose[3] = "Нормально";
             diagnose[4] = "Талант";
             diagnose[5] = "Гений";
-            return diagnose[ordinal];
+            return diagnose;
         }
         public static int CalculateDiagnose(int countRightAnswers, int overall)
         {

@@ -86,9 +86,10 @@
         }
         public static bool IsContinue()
         {
+            var answer = "продолжаем?";
             while (true)
             {
-                string answer = Console.ReadLine().ToLower().Trim();
+                answer = Console.ReadLine().ToLower().Trim();
                 switch (answer)
                 {
                     case "да": return true;
@@ -101,9 +102,10 @@
         }
         public static int GetAnswer()
         {
+            var answer = "должен ввести число";
             while (true)
             {
-                string answer = Console.ReadLine();
+                answer = Console.ReadLine();
                 if (int.TryParse(answer, out int result))
                 {
                     return result;

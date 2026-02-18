@@ -73,11 +73,10 @@
         }
         public static List<Dictionary<string, int>> ShuffleQuestion(List<Dictionary<string,int>> result)
         {
-            var j = 0;
             Random rand = new Random();
             for (int i = result.Count - 1; i >= 0; i--)
             {
-                j = rand.Next(0, i);// var
+                var j = rand.Next(0, i);// var
                 var temp = result[j];
                 result[j] = result[i];
                 result[i] = temp;

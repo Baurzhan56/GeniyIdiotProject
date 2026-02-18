@@ -8,12 +8,12 @@
             var rightAnswersCount = 0;
             var rightAnswer = 0;
             var each = new KeyValuePair<string, int>();
-            var questionsList = GetQA();
+            var questions = GetQA();
             Console.WriteLine("Введите ваше имя пожалуйста.");
             var name = Console.ReadLine();
             do
             {
-                var questions = ShuffleQuestion(questionsList);
+                ShuffleQuestion(questions);
                 rightAnswersCount = 0;// переменные с маленькой буквы
                 for (int i = 0; i < questions.Count; i++)
                 {

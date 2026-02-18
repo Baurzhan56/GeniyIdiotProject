@@ -13,15 +13,13 @@
                 for (int i = 0; i < questions.Count; i++)
                 {
                     Console.WriteLine("Номер вопроса: " + (i + 1));
-                    foreach (var dict in questions[i])
+                    var each = questions[i].Single();
+                    Console.WriteLine(each.Key);
+                    var userAnswer = GetAnswer();
+                    var rightAnswer = each.Value;
+                    if (userAnswer == rightAnswer)
                     {
-                        Console.WriteLine(dict.Key);
-                        var userAnswer = GetAnswer();
-                        var rightAnswer = dict.Value;
-                        if (userAnswer == rightAnswer)
-                        {
-                            rightAnswersCount++;
-                        }
+                        rightAnswersCount++;
                     }
                 }
                 Console.WriteLine($"Количество правильных ответов: {rightAnswersCount}{Environment.NewLine}Ваш диагноз {name}: " + GetDiagnose(CalculateDiagnose(rightAnswersCount, questions.Count)) + $"{Environment.NewLine}" + $"{name} не хотите ли вы сыграть снова? Ответьте да или нет?");

@@ -4,20 +4,24 @@
     {
         static void Main(string[] args)
         {
+            var userAnswer = 0;
+            var rightAnswersCount = 0;
+            var rightAnswer = 0;
+            var each = new KeyValuePair<string, int>();
             var questionsList = GetQA();
             Console.WriteLine("Введите ваше имя пожалуйста.");
             var name = Console.ReadLine();
             do
             {
                 var questions = ShuffleQuestion(questionsList);
-                var rightAnswersCount = 0;// переменные с маленькой буквы
+                rightAnswersCount = 0;// переменные с маленькой буквы
                 for (int i = 0; i < questions.Count; i++)
                 {
                     Console.WriteLine("Номер вопроса: " + (i + 1));
-                    var each = questions[i].Single();
+                    each = questions[i].Single();
                     Console.WriteLine(each.Key);
-                    var userAnswer = GetAnswer();
-                    var rightAnswer = each.Value;
+                    userAnswer = GetAnswer();
+                    rightAnswer = each.Value;
                     if (userAnswer == rightAnswer)
                     {
                         rightAnswersCount++;

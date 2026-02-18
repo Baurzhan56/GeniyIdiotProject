@@ -4,11 +4,12 @@
     {
         static void Main(string[] args)
         {
+            var questionsList = GetQA();
             Console.WriteLine("Введите ваше имя пожалуйста.");
             var name = Console.ReadLine();
             do
             {
-                var questions = ShuffleQuestion(GetQA());
+                var questions = ShuffleQuestion(questionsList);
                 var rightAnswersCount = 0;// переменные с маленькой буквы
                 for (int i = 0; i < questions.Count; i++)
                 {

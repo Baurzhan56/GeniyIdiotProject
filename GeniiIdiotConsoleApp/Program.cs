@@ -8,7 +8,7 @@
             var name = Console.ReadLine();
             do
             {
-                var questions = ShuffleQuestion();
+                var questions = ShuffleQuestion(GetQA());
                 var rightAnswersCount = 0;// переменные с маленькой буквы
                 for (int i = 0; i < questions.Count; i++)
                 {
@@ -66,10 +66,9 @@
                     throw new Exception("Ошибка в расчетах процентажа.");// это слов здесь не очень. Как минимум оно должно быть на русском и чтот обозначать при дефолтном значении
             }
         }
-        public static List<Dictionary<string, int>> ShuffleQuestion()
+        public static List<Dictionary<string, int>> ShuffleQuestion(List<Dictionary<string,int>> result)
         {
             Random rand = new Random();
-            var result = GetQA();
             for (int i = result.Count - 1; i >= 0; i--)
             {
                 var j = rand.Next(0, i);// var

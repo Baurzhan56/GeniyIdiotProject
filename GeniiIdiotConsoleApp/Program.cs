@@ -24,7 +24,7 @@
                         }
                     }
                 }
-                Console.WriteLine($"Количество правильных ответов: {rightAnswersCount}{Environment.NewLine}Ваш диагноз {name}: " + GetDiagnose(rightAnswersCount) + $"{Environment.NewLine}" + $"{name} не хотите ли вы сыграть снова? Ответьте да или нет?");// /n в некоторых системах
+                Console.WriteLine($"Количество правильных ответов: {rightAnswersCount}{Environment.NewLine}Ваш диагноз {name}: " + GetDiagnose(CalculateDiagnose(rightAnswersCount, questions.Count)) + $"{Environment.NewLine}" + $"{name} не хотите ли вы сыграть снова? Ответьте да или нет?");
 
             }
             while (IsContinue());
@@ -40,10 +40,9 @@
             answer1,answer2,answer3,answer4,answer5};
             return answers;
         }
-        public static string GetDiagnose(int countRightAnswers)
+        public static string GetDiagnose(int ordinal)
         {
-            var questions = GetQA();// зачем здесь снеова вытаскивать вопросы, это тарта памяти. В метода надо сразу передавать данные о количестве вопросов для расчета диагноза
-            var percentage = (double)countRightAnswers * 100 / questions.Count;
+            // зачем здесь снеова вытаскивать вопросы, это тарта памяти. В метода надо сразу передавать данные о количестве вопросов для расчета диагноза
             var diagnose = new string[6];
             diagnose[0] = "Идиот";
             diagnose[1] = "Кретин";
@@ -51,21 +50,23 @@
             diagnose[3] = "Нормально";
             diagnose[4] = "Талант";
             diagnose[5] = "Гений";
-
+            return diagnose[ordinal];
+        }
+        public static int CalculateDiagnose(int countRightAnswers, int overall)
+        {
             // вот этот блок кода в отдельный метода расчета CalculateDiagnose, как пример
+            var percentage =(double)countRightAnswers * 100 / overall;
             switch (percentage)// не надо смешивать в одном методе диагнозы и рассчет диагноза. Это разные вещи, надо разделить и подумать как еще можной упростить расчет диагноза. ИИ лучше не использовать, она оставляет метки))))
             {
-                case < 20: return diagnose[0];
-                case >= 20 and < 40: return diagnose[1];
-                case >= 40 and < 60: return diagnose[2];
-                case >= 60 and < 80: return diagnose[3];
-                case >= 80 and < 100: return diagnose[4];
-                case >= 100: return diagnose[5];
+                case < 20: return 0;
+                case >= 20 and < 40: return 1;
+                case >= 40 and < 60: return 2;
+                case >= 60 and < 80: return 3;
+                case >= 80 and < 100: return 4;
+                case >= 100: return 5;
                 default:
-                    return "Mistake";// это слов здесь не очень. Как минимум оно должно быть на русском и чтот обозначать при дефолтном значении
+                    throw new Exception("Ошибка в расчетах процентажа.");// это слов здесь не очень. Как минимум оно должно быть на русском и чтот обозначать при дефолтном значении
             }
-            ;
-            //
         }
         public static List<Dictionary<string, int>> ShuffleQuestion()
         {

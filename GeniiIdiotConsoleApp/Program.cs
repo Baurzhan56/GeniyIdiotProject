@@ -8,7 +8,7 @@
             var userAnswer = 0;
             var rightAnswersCount = 0;
             var rightAnswer = 0;
-            var each = new KeyValuePair<string, int>();// название перменной совсем никуда, надо более понятное название дать
+            var questionAnswerPair = new KeyValuePair<string, int>();// название перменной совсем никуда, надо более понятное название дать
             // необходимо приучать себя давать навзания перменным правильные, даже самым незначительным, так лучше руку на этом нарабатыватьь
             Console.WriteLine("Введите ваше имя пожалуйста.");
             var name = Console.ReadLine();
@@ -19,10 +19,10 @@
                 for (int i = 0; i < questions.Count; i++)
                 {
                     Console.WriteLine("Номер вопроса: " + (i + 1));
-                    each = questions[i].Single();
-                    Console.WriteLine(each.Key);
+                    questionAnswerPair = questions[i].Single();
+                    Console.WriteLine(questionAnswerPair.Key);
                     userAnswer = GetAnswer();
-                    rightAnswer = each.Value;
+                    rightAnswer = questionAnswerPair.Value;
                     if (userAnswer == rightAnswer)
                     {
                         rightAnswersCount++;

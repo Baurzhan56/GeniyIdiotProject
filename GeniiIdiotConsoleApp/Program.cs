@@ -7,6 +7,7 @@
             // radipraktiki
             //task11 change 1
             // TASK10 CHANGING IS ADDED
+            //task11 chang2
             var diagnoses = GetDiagnose();
             var questions = GetQA();
             var userAnswer = 0;

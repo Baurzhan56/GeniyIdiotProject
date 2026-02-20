@@ -4,19 +4,18 @@
     {
         static void Main(string[] args)
         {
-            // radipraktiki
-            var diagnoses = GetDiagnose();
-            var questions = GetQA();
+            var questions = GetQuestionAnswer();
             var userAnswer = 0;
             var rightAnswersCount = 0;
             var rightAnswer = 0;
-            var each = new KeyValuePair<string, int>();
+            var each = new KeyValuePair<string, int>();// название перменной совсем никуда, надо более понятное название дать
+            // необходимо приучать себя давать навзания перменным правильные, даже самым незначительным, так лучше руку на этом нарабатыватьь
             Console.WriteLine("Введите ваше имя пожалуйста.");
             var name = Console.ReadLine();
             do
             {
                 ShuffleQuestion(questions);
-                rightAnswersCount = 0;// переменные с маленькой буквы
+                rightAnswersCount = 0;
                 for (int i = 0; i < questions.Count; i++)
                 {
                     Console.WriteLine("Номер вопроса: " + (i + 1));
@@ -29,12 +28,12 @@
                         rightAnswersCount++;
                     }
                 }
-                Console.WriteLine($"Количество правильных ответов: {rightAnswersCount}{Environment.NewLine}Ваш диагноз {name}: " + diagnoses[CalculateDiagnose(rightAnswersCount, questions.Count)] + $"{Environment.NewLine}" + $"{name} не хотите ли вы сыграть снова? Ответьте да или нет?");
+                Console.WriteLine($"Количество правильных ответов: {rightAnswersCount}{Environment.NewLine}Ваш диагноз {name}: " + GetDiagnose(CalculateDiagnose(rightAnswersCount, questions.Count)) + $"{Environment.NewLine}" + $"{name} не хотите ли вы сыграть снова? Ответьте да или нет?");
 
             }
             while (IsContinue());
         }
-        public static List<Dictionary<string, int>> GetQA()//  теперь это метод с вопросами и ответами)))) может быть переименуем?)
+        public static List<Dictionary<string, int>> GetQuestionAnswer()// GetQuestionAnaswer
         {
             var answer1 = new Dictionary<string, int> { { "Сколько будет два плюс два умноженное на два?", 6 } };
             var answer2 = new Dictionary<string, int> { { "Бревно нужно распилить на 10 частей , сколько надо сделать надпилов?", 9 } };
@@ -45,7 +44,7 @@
             answer1,answer2,answer3,answer4,answer5};
             return answers;
         }
-        public static string[] GetDiagnose()
+        public static string GetDiagnose(int answer)
         {
             // зачем здесь снеова вытаскивать вопросы, это тарта памяти. В метода надо сразу передавать данные о количестве вопросов для расчета диагноза
             var diagnose = new string[6];
@@ -55,25 +54,31 @@
             diagnose[3] = "Нормально";
             diagnose[4] = "Талант";
             diagnose[5] = "Гений";
-            return diagnose;
+            return diagnose[answer];
         }
         public static int CalculateDiagnose(int countRightAnswers, int overall)
         {
-            // вот этот блок кода в отдельный метода расчета CalculateDiagnose, как пример
-            var percentage =(double)countRightAnswers * 100 / overall;
-            switch (percentage)// не надо смешивать в одном методе диагнозы и рассчет диагноза. Это разные вещи, надо разделить и подумать как еще можной упростить расчет диагноза. ИИ лучше не использовать, она оставляет метки))))
+
+            var percentage = (double)countRightAnswers * 100 / overall;
+            switch (percentage)
             {
                 case < 20: return 0;
-                case >= 20 and < 40: return 1;
+                case >= 20 and < 40: return 1;// а если здесь вметос чисел возвращать сразу навзание диагноза, это же скоратит наш код и сделает его лаконичным и меньше на один метод))нет
                 case >= 40 and < 60: return 2;
                 case >= 60 and < 80: return 3;
                 case >= 80 and < 100: return 4;
                 case >= 100: return 5;
                 default:
-                    throw new Exception("Ошибка в расчетах процентажа.");// это слов здесь не очень. Как минимум оно должно быть на русском и чтот обозначать при дефолтном значении
+                    throw new Exception("Ошибка в расчетах процентажа.");// не надо писать здесь исключение, это отрубит работу программы. Можен же просто написать 
+                                                                         //case < 20: return 0;
+                                                                         //case >= 20 and < 40: return 1;
+                                                                         //case >= 40 and < 60: return 2;
+                                                                         //case >= 60 and < 80: return 3;
+                                                                         //case >= 80 and < 100: return 4;               
+                                                                         //default: return 5;
             }
         }
-        public static List<Dictionary<string, int>> ShuffleQuestion(List<Dictionary<string,int>> result)
+        public static List<Dictionary<string, int>> ShuffleQuestion(List<Dictionary<string, int>> result)
         {
             Random rand = new Random();
             for (int i = result.Count - 1; i >= 0; i--)

@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            // radipraktiki
             var diagnoses = GetDiagnose();
             var questions = GetQA();
             var userAnswer = 0;

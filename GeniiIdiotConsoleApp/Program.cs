@@ -47,6 +47,7 @@
             answer1,answer2,answer3,answer4,answer5};
             return answers;
         }
+        // make any notes here to do commit
         public static string[] GetDiagnose()
         {
             // зачем здесь снеова вытаскивать вопросы, это тарта памяти. В метода надо сразу передавать данные о количестве вопросов для расчета диагноза

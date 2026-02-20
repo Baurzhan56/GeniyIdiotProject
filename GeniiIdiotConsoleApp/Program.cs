@@ -28,7 +28,7 @@
                         rightAnswersCount++;
                     }
                 }
-                Console.WriteLine($"Количество правильных ответов: {rightAnswersCount}{Environment.NewLine}Ваш диагноз {name}: " + GetDiagnose(CalculateDiagnose(rightAnswersCount, questions.Count)) + $"{Environment.NewLine}" + $"{name} не хотите ли вы сыграть снова? Ответьте да или нет?");
+                Console.WriteLine($"Количество правильных ответов: {rightAnswersCount}{Environment.NewLine}Ваш диагноз {name}: " + CalculateDiagnose(rightAnswersCount, questions.Count) + $"{Environment.NewLine}" + $"{name} не хотите ли вы сыграть снова? Ответьте да или нет?");
 
             }
             while (IsContinue());
@@ -44,32 +44,20 @@
             answer1,answer2,answer3,answer4,answer5};
             return answers;
         }
-        public static string GetDiagnose(int answer)
-        {
-            // зачем здесь снеова вытаскивать вопросы, это тарта памяти. В метода надо сразу передавать данные о количестве вопросов для расчета диагноза
-            var diagnose = new string[6];
-            diagnose[0] = "Идиот";
-            diagnose[1] = "Кретин";
-            diagnose[2] = "Дурак";
-            diagnose[3] = "Нормально";
-            diagnose[4] = "Талант";
-            diagnose[5] = "Гений";
-            return diagnose[answer];
-        }
-        public static int CalculateDiagnose(int countRightAnswers, int overall)
+        public static string CalculateDiagnose(int countRightAnswers, int overall)
         {
 
             var percentage = (double)countRightAnswers * 100 / overall;
             switch (percentage)
             {
-                case < 20: return 0;
-                case >= 20 and < 40: return 1;// а если здесь вметос чисел возвращать сразу навзание диагноза, это же скоратит наш код и сделает его лаконичным и меньше на один метод))нет
-                case >= 40 and < 60: return 2;
-                case >= 60 and < 80: return 3;
-                case >= 80 and < 100: return 4;
-                case >= 100: return 5;
+                case < 20: return "Идиот";
+                case >= 20 and < 40: return "Кретин";// а если здесь вметос чисел возвращать сразу навзание диагноза, это же скоратит наш код и сделает его лаконичным и меньше на один метод))нет
+                case >= 40 and < 60: return "Дурак";
+                case >= 60 and < 80: return "Нормально";
+                case >= 80 and < 100: return "Талант";
+                case >= 100: return "Гений";
                 default:
-                    throw new Exception("Ошибка в расчетах процентажа.");// не надо писать здесь исключение, это отрубит работу программы. Можен же просто написать 
+                    return "Гений";// не надо писать здесь исключение, это отрубит работу программы. Можен же просто написать 
                                                                          //case < 20: return 0;
                                                                          //case >= 20 and < 40: return 1;
                                                                          //case >= 40 and < 60: return 2;

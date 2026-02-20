@@ -5,6 +5,7 @@
         static void Main(string[] args)
         {
             // radipraktiki
+            // TASK10 CHANGING IS ADDED
             var diagnoses = GetDiagnose();
             var questions = GetQA();
             var userAnswer = 0;

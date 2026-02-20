@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            //вношу изменения
             // radipraktiki
             var diagnoses = GetDiagnose();
             var questions = GetQA();
